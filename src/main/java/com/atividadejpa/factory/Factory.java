@@ -23,82 +23,84 @@ public class Factory {
         EntityManager manager = factory.createEntityManager();
 
         //Inserção de alunos e orientadores
-//        OrientadorEntity orientador1 = new OrientadorEntity();
+//        Orientador orientador1 = new Orientador();
 //        orientador1.setNome("Cristiano Alves");
 //        orientador1.setMatricula("22559");
 //        orientador1.setEmail("cristiano@ifpb.edu.br");
 //
-//        OrientadorEntity orientador2 = new OrientadorEntity();
+//        Orientador orientador2 = new Orientador();
 //        orientador2.setNome("Fábio Abrantes Diniz");
 //        orientador2.setMatricula("22557");
 //        orientador2.setEmail("fabioads@ifpb.edu.br");
 //
-//        AlunoEntity aluno1 = new AlunoEntity();;
+//        Aluno aluno1 = new Aluno();
 //        aluno1.setNome("Moacir David");
 //        aluno1.setMatricula("202012010020");
 //        aluno1.setEmail("moacir@gmail.com");
 //        aluno1.setOrientador(orientador1);
 //
-//        AlunoEntity aluno2 = new AlunoEntity();
+//        Aluno aluno2 = new Aluno();
 //        aluno2.setNome("Ramon Rolim");
 //        aluno2.setMatricula("20192010001");
 //        aluno2.setEmail("ramon@gmail.com");
 //        aluno2.setOrientador(orientador2);
-//        
+//
+//        Orientador fabioGomes = new Orientador();
+//        fabioGomes.setNome("Fábio Gomes");
+//        fabioGomes.setMatricula("23312");
+//        fabioGomes.setEmail("fabio@ifpb.edu.br");
+//
+//        Aluno tobias = new Aluno();
+//        tobias.setNome("Tobias Miguel");
+//        tobias.setMatricula("202012010018");
+//        tobias.setEmail("tobias@academico.ifpb.edu.br");
+//        tobias.setOrientador(fabioGomes);
 //
 //        manager.getTransaction().begin();
 //
 //        manager.persist(orientador1);
 //        manager.persist(orientador2);
-//        
+//        manager.persist(fabioGomes);
+//
 //        manager.persist(aluno1);
 //        manager.persist(aluno2);
-//
-//        manager.getTransaction().commit();
-//        manager.close();
-        // Consultando banco de dados
-//        manager.getTransaction().begin();
-//
-//        OrientadorEntity orientador = manager.find(OrientadorEntity.class, 1L);
-//
-//        manager.getTransaction().commit();
-//        manager.close();
-//
-//        System.out.println(orientador.getNome());
-        // Inserindo novos alunos e orientadores
-        Orientador fabioGomes = new Orientador();
-        fabioGomes.setNome("Fábio Gomes");
-        fabioGomes.setMatricula("23312");
-        fabioGomes.setEmail("fabio@ifpb.edu.br");
-
-        Aluno tobias = new Aluno();
-        tobias.setNome("Tobias Miguel");
-        tobias.setMatricula("202012010018");
-        tobias.setEmail("tobias@academico.ifpb.edu.br");
-        tobias.setOrientador(fabioGomes);
-
-//        manager.getTransaction().begin();
-//
-//        manager.persist(fabioGomes);
 //        manager.persist(tobias);
 //
 //        manager.getTransaction().commit();
 //        manager.close();
+        // Consultando aluno por matrícula
+//        
+//        String matriculaAluno = "202012010020";
+//        
+//        manager.getTransaction().begin();
+//        
+//        Query query = manager.createQuery("FROM Aluno a WHERE a.matricula = :matricula");
+//        query.setParameter("matricula", matriculaAluno);
+//        
+//        Aluno aluno = (Aluno) query.getSingleResult();
+//        
+//        manager.getTransaction().commit();
+//        manager.close();
+//        
+//        System.out.println(aluno.toString());
+        // Atualizando um registro
+//        manager.getTransaction().begin();
+//
+//        Aluno aluno = manager.find(Aluno.class, 1L);
+//        aluno.setNome("Moacir David de Almeida Gonçalves");
+//
+//        manager.getTransaction().commit();
+//        manager.close();
 
-        // Inserindo novo aluno ao orientador Fábio
-        manager.getTransaction().begin();
-
-//        Query query = manager.createQuery("FROM Orientador o WHERE o.nome = 'Fábio Gomes'");
+        // Deletando um aluno
         
-        manager.persist(fabioGomes);
-        manager.persist(tobias);
-
-//        Orientador orientador = (Orientador) query.getSingleResult();
-        
-        manager.getTransaction().commit();
-        manager.close();
-        
-//        System.out.println(orientador.toString());
+//        manager.getTransaction().begin();
+//        
+//        Aluno aluno = manager.find(Aluno.class, 3L);
+//        manager.remove(aluno);
+//        
+//        manager.getTransaction().commit();
+//        manager.close();
 
     }
 
