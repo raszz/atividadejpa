@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "orientador_tb")
-public class OrientadorEntity implements Serializable {
+public class Orientador implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +35,8 @@ public class OrientadorEntity implements Serializable {
     @NotNull
     private String email;
     
-    @OneToMany(mappedBy = "orientador")
-    private List<AlunoEntity> orientandos = new ArrayList<>();
+    @OneToMany(mappedBy = "orientador", fetch = FetchType.EAGER)
+    private List<Aluno> orientandos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -69,7 +70,7 @@ public class OrientadorEntity implements Serializable {
         this.email = email;
     }
 
-    public List<AlunoEntity> getOrientandos() {
+    public List<Aluno> getOrientandos() {
         return orientandos;
     }
 

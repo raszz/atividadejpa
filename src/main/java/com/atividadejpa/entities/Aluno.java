@@ -6,6 +6,7 @@ package com.atividadejpa.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name="tb_alunos")
-public class AlunoEntity implements Serializable {
+public class Aluno implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +32,8 @@ public class AlunoEntity implements Serializable {
     private String matricula;
     @NotNull String email;
     
-    @ManyToOne
-    private OrientadorEntity orientador;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Orientador orientador;
 
     public Long getId() {
         return id;
@@ -66,11 +67,11 @@ public class AlunoEntity implements Serializable {
         this.email = email;
     }
 
-    public OrientadorEntity getOrientador() {
+    public Orientador getOrientador() {
         return orientador;
     }
 
-    public void setOrientador(OrientadorEntity orientador) {
+    public void setOrientador(Orientador orientador) {
         this.orientador = orientador;
     }
 
