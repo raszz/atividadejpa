@@ -4,12 +4,13 @@
  */
 package com.atividadejpa.factory;
 
-import com.atividadejpa.entities.AlunoEntity;
-import com.atividadejpa.entities.OrientadorEntity;
+import com.atividadejpa.entities.Aluno;
+import com.atividadejpa.entities.Orientador;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Factory {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("my_persistence_unit");
         EntityManager manager = factory.createEntityManager();
 
-        // Inserção de alunos e orientadores
+        //Inserção de alunos e orientadores
 //        OrientadorEntity orientador1 = new OrientadorEntity();
 //        orientador1.setNome("Cristiano Alves");
 //        orientador1.setMatricula("22559");
@@ -56,15 +57,49 @@ public class Factory {
 //        manager.getTransaction().commit();
 //        manager.close();
         // Consultando banco de dados
+//        manager.getTransaction().begin();
+//
+//        OrientadorEntity orientador = manager.find(OrientadorEntity.class, 1L);
+//
+//        manager.getTransaction().commit();
+//        manager.close();
+//
+//        System.out.println(orientador.getNome());
+        // Inserindo novos alunos e orientadores
+        Orientador fabioGomes = new Orientador();
+        fabioGomes.setNome("Fábio Gomes");
+        fabioGomes.setMatricula("23312");
+        fabioGomes.setEmail("fabio@ifpb.edu.br");
+
+        Aluno tobias = new Aluno();
+        tobias.setNome("Tobias Miguel");
+        tobias.setMatricula("202012010018");
+        tobias.setEmail("tobias@academico.ifpb.edu.br");
+        tobias.setOrientador(fabioGomes);
+
+//        manager.getTransaction().begin();
+//
+//        manager.persist(fabioGomes);
+//        manager.persist(tobias);
+//
+//        manager.getTransaction().commit();
+//        manager.close();
+
+        // Inserindo novo aluno ao orientador Fábio
         manager.getTransaction().begin();
 
-        OrientadorEntity orientador = manager.find(OrientadorEntity.class, 1L);
+//        Query query = manager.createQuery("FROM Orientador o WHERE o.nome = 'Fábio Gomes'");
+        
+        manager.persist(fabioGomes);
+        manager.persist(tobias);
 
+//        Orientador orientador = (Orientador) query.getSingleResult();
+        
         manager.getTransaction().commit();
         manager.close();
-
-        System.out.println(orientador.getNome());
         
+//        System.out.println(orientador.toString());
+
     }
 
 }
