@@ -5,6 +5,8 @@
 package com.atividadejpa.factory;
 
 import com.atividadejpa.entities.Aluno;
+import com.atividadejpa.entities.Empresa;
+import com.atividadejpa.entities.Estagio;
 import com.atividadejpa.entities.Orientador;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -101,6 +103,44 @@ public class Factory {
 //        
 //        manager.getTransaction().commit();
 //        manager.close();
+
+        // Inserindo empresas e estágios
+        
+        Orientador cristiano = new Orientador();
+        cristiano.setNome("Cristiano");
+        cristiano.setMatricula("23334");
+        cristiano.setEmail("cristianoifpbdac@ifpb.edu.br");
+        
+        
+        Aluno moacir = new Aluno();
+        moacir.setNome("Moacir David A. Goncalves");
+        moacir.setEmail("moacir@ifpb.edu.br");
+        moacir.setMatricula("20222010020");
+        moacir.setOrientador(cristiano);
+        
+        
+        Empresa minsait = new Empresa(); 
+        minsait.setRazaoSocial("Minsait an Indra Company");
+        minsait.setCnpj("233457681922");
+        
+        
+        Estagio estagioMoacir = new Estagio();
+        estagioMoacir.setDescricao("Estágio em Desenvolvimento Full Stack");
+        estagioMoacir.setAluno(moacir);
+        estagioMoacir.setOrientador(cristiano);
+        estagioMoacir.setEmpresa(minsait);
+        
+        minsait.getEstagios().add(estagioMoacir);
+        
+        manager.getTransaction().begin();
+        
+        manager.persist(cristiano);
+        manager.persist(moacir);
+        manager.persist(estagioMoacir);
+        manager.persist(minsait);
+        
+        manager.getTransaction().commit();
+        manager.close();
 
     }
 
