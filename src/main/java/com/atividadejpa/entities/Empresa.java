@@ -5,8 +5,6 @@
 package com.atividadejpa.entities;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,25 +17,29 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author moaci
+ * @author RAMON
  */
-
 @Entity
-@Table(name = "empresa_tb")
+@Table(name="tb_empresas")
 public class Empresa implements Serializable {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @NotNull
-    private String razaoSocial;
+    private String nome;
     @NotNull
     private String cnpj;
+    @NotNull String email;
+    private String localidade;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "estagios")
-    private List<Estagio> estagios = new HashMap<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    private List <Aluno> alunos;
+    
+    
 
+    
     public Long getId() {
         return id;
     }
@@ -45,13 +47,13 @@ public class Empresa implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getRazaoSocial() {
-        return razaoSocial;
+    
+    public String getNome() {
+        return nome;
     }
 
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCnpj() {
@@ -61,15 +63,32 @@ public class Empresa implements Serializable {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+   
 
-    public List<Estagio> getEstagios() {
-        return estagios;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEstagios(List<Estagio> estagios) {
-        this.estagios = estagios;
+    public void setEmail(String email) {
+        this.email = email;
     }
-    
-    
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+       
+   public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    @Override
+    public String toString() {
+        return "EmpresaEntity[ " + "id=" + id + ", nome=" + nome + ", cnpj=" + cnpj  + ", email=" + email + '}';
+    }
     
 }
